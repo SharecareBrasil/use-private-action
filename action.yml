@@ -13,13 +13,14 @@ inputs:
 runs:
   using: "composite"
   steps:
+  - id: random-path
+    run: echo "::set-output name=random-id::$(date +%s)"
+    shell: bash
+  
   - name: Get composite run steps repository
     uses: actions/checkout@v2
     with:
       repository: ${{ inputs.repositroy }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
-      path: .github/${{ inputs.action-name }}
-  
-  - name: Run action from private repo
-    uses: ./.github/${{ inputs.action-name }}
+      path: .github/${{ steps.random-path.outputs.random-id }}
