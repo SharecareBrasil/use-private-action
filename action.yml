@@ -6,9 +6,8 @@ inputs:
     default: main
     required: true
   token:
-    required: true
-  action-name:
-    required: true
+    required: 
+    default: ${secrets.ADM_REPO_WRITE}
 outputs:
   action-path:
     description: "Private action path"
