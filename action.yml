@@ -7,22 +7,16 @@ inputs:
     required: true
   token:
     required: true
-outputs:
-  action-path:
-    description: "Private action path"
-    value: .github/${{ steps.random-path.outputs.random-id }}
+  action-name:
+    required: true
 
 runs:
   using: "composite"
   steps:
-  - id: random-path
-    run: echo "::set-output name=random-id::$(date +%s)"
-    shell: bash
-  
   - name: Get composite run steps repository
     uses: actions/checkout@v3
     with:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
-      path: .github/${{ steps.random-path.outputs.random-id }}
+      path: .github/${{ inputs.action-name }}
