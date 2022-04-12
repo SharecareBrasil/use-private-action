@@ -9,6 +9,10 @@ inputs:
     required: true
   action-name:
     required: true
+outputs:
+  action-path:
+    description: "Private action path"
+    value: .github/${{ steps.random-path.outputs.random-id }}
 
 runs:
   using: "composite"
